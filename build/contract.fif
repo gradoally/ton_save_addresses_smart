@@ -1,0 +1,46 @@
+"Asm.fif" include
+// automatically generated from `/Users/vsevolodignatev/Library/Application Support/toncli/func-libs/stdlib.func` `/Users/vsevolodignatev/Desktop/Projects/ton_save_addresses_smart/func/code.func` 
+PROGRAM{
+  DECLPROC save_data
+  DECLPROC load_data
+  DECLPROC recv_internal
+  104009 DECLMETHOD get_initiator_nft_addr
+  71375 DECLMETHOD get_contragent_nft_addr
+  save_data PROC:<{
+    //  initiator_nft_addr contragent_nft_addr
+    NEWC
+    ROT	//  contragent_nft_addr _2 initiator_nft_addr
+    STSLICER	//  contragent_nft_addr _3
+    SWAP	//  _3 contragent_nft_addr
+    STSLICER	//  _4
+    ENDC	//  _5
+    c4 POP
+  }>
+  load_data PROC:<{
+    // 
+    c4 PUSH	//  _1
+    CTOS	//  ds
+    LDMSGADDR	//  _5 ds
+    LDMSGADDR	//  _5 _12 _11
+    DROP	//  initiator_nft_addr contragent_nft_addr
+  }>
+  recv_internal PROC:<{
+    //  in_msg_body
+    LDMSGADDR	//  _3 in_msg_body
+    LDMSGADDR	//  _3 _11 _10
+    DROP	//  initiator_nft_addr contragent_nft_addr
+    save_data CALLDICT
+  }>
+  get_initiator_nft_addr PROC:<{
+    // 
+    load_data INLINECALLDICT	//  _5 _6
+    DROP	//  initiator_nft_addr
+    32 PLDU	//  _4
+  }>
+  get_contragent_nft_addr PROC:<{
+    // 
+    load_data INLINECALLDICT	//  _5 _6
+    NIP	//  contragent_nft_addr
+    32 PLDU	//  _4
+  }>
+}END>c
