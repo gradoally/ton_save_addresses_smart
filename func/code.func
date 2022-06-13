@@ -25,18 +25,18 @@
 }
 
 
-int get_initiator_nft_addr() method_id {
+slice get_initiator_nft_addr() method_id {
 
     var (initiator_nft_addr, _) = load_data();
 
-    return initiator_nft_addr.preload_uint(32);
+    return initiator_nft_addr;
 
 }
 
-int get_contragent_nft_addr() method_id {
+slice get_contragent_nft_addr() method_id {
 
     var (_, contragent_nft_addr) = load_data();
 
-    return contragent_nft_addr.preload_uint(32);
+    return contragent_nft_addr;
 
 }

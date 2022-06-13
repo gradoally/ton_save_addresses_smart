@@ -33,14 +33,12 @@ PROGRAM{
   }>
   get_initiator_nft_addr PROC:<{
     // 
-    load_data INLINECALLDICT	//  _5 _6
+    load_data INLINECALLDICT	//  _3 _4
     DROP	//  initiator_nft_addr
-    32 PLDU	//  _4
   }>
   get_contragent_nft_addr PROC:<{
     // 
-    load_data INLINECALLDICT	//  _5 _6
+    load_data INLINECALLDICT	//  _3 _4
     NIP	//  contragent_nft_addr
-    32 PLDU	//  _4
   }>
 }END>c
